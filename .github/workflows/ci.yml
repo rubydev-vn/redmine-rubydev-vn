@@ -1,0 +1,38 @@
+name: CI/CD
+
+on:
+  pull_request:
+    branches: [develop]
+  push:
+    branches: [develop]
+
+jobs:
+  production-deploy:
+    runs-on: ubuntu-latest
+    env:
+      SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+      RAILS_ENV: development
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy SSH key
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > $GITHUB_WORKSPACE/.ssh/id_rsa
+          chmod 600 $GITHUB_WORKSPACE/.ssh/id_rsa
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Setup Capistrano
+        run: |
+          bundle config set with 'deployment'
+          bundle install
+
+      - name: Deploy to production
+        run: bundle exec cap production deploy
