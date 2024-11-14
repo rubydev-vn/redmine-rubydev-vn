@@ -92,6 +92,7 @@ end
 
 group :development, :test do
   gem 'debug'
+  gem 'pry'
 end
 
 group :development do
@@ -123,4 +124,12 @@ end
 # Load plugins' Gemfiles
 Dir.glob File.expand_path("../plugins/*/{Gemfile,PluginGemfile}", __FILE__) do |file|
   eval_gemfile file
+end
+
+group :deployment do
+  gem "capistrano", "~> 3.19", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem "capistrano-bundler", "~> 2.1"
+  gem "ed25519", "~> 1.3"
+  gem "bcrypt_pbkdf", "~> 1.1"
 end
