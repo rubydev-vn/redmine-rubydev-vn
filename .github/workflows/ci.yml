@@ -2,21 +2,36 @@ name: CI/CD
 
 on:
   pull_request:
+    branches: [develop]
   push:
     branches: [develop]
 
 jobs:
-  deploy:
+  production-deploy:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/develop' && github.event_name == 'push'
+    env:
+      SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: SSH into EC2 instance and deploy
-        uses: appleboy/ssh-action@master
+      - name: Copy SSH key
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > $GITHUB_WORKSPACE/.ssh/id_rsa
+          chmod 600 $GITHUB_WORKSPACE/.ssh/id_rsa
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
         with:
-          host: ${{ secrets.EC2_PUBLIC_IP }}
-          username: ${{ secrets.EC2_USERNAME }}
-          key: ${{ secrets.EC2_DEPLOY_KEY }}
-          script: /bin/bash -lc "~/rails/shared/scripts/deploy.sh"
+          ruby-version: .ruby-version
+          bundler-cache: true
+
+      - name: Setup Capistrano
+        run: |
+          bundle config set with 'deployment'
+          bundle install
+
+      - name: Deploy to production
+        run: bundle exec cap production deploy

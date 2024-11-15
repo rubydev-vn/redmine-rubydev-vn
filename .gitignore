@@ -4,7 +4,8 @@
 /.loadpath
 /.powrc
 /.rvmrc
-/.ruby-version
+/.ssh
+# /.ruby-version
 /.byebug_history
 /config/additional_environment.rb
 /config/configuration.yml
@@ -43,8 +44,8 @@
 *.rbc
 
 /.bundle
-/Gemfile.lock
-/Gemfile.local
+# /Gemfile.lock
+# /Gemfile.local
 
 /node_modules
 yarn-error.log
