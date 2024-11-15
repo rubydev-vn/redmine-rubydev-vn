@@ -4,7 +4,7 @@
 /.loadpath
 /.powrc
 /.rvmrc
-/.ruby-version
+# /.ruby-version
 /.byebug_history
 /config/additional_environment.rb
 /config/configuration.yml
@@ -13,6 +13,8 @@
 /config/secrets.yml
 /config/initializers/session_store.rb
 /config/initializers/secret_token.rb
+/config/credentials.yml.enc
+/config/master.key
 /coverage
 /db/*.db
 /db/*.sqlite3
