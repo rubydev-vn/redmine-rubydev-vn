@@ -381,7 +381,6 @@ DEPENDENCIES
   net-imap (~> 0.4.8)
   net-ldap (~> 0.17.0)
   net-pop (~> 0.1.2)
-  net-protocol (~> 0.2.2)
   net-smtp (~> 0.4.0)
   nokogiri (~> 1.16.0)
   propshaft (~> 1.1.0)
