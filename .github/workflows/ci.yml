@@ -9,6 +9,7 @@ on:
 jobs:
   dev-deploy:
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     env:
       SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
       DEPLOY_USER: ${{ secrets.DEPLOY_USER }}

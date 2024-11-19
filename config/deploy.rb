@@ -4,7 +4,7 @@
 lock "~> 3.19.2"
 
 set :application, "redmine-rubydev-vn"
-set :repo_url, "git@github.com:rubydev-vn/redmine-rubydev-vn.git"
+set :repo_url, ENV.fetch('REPO_URL', '')
 set :deploy_user, ENV.fetch('DEPLOY_USER', '')
 
 if File.exist?('.ruby-version')
