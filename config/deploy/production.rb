@@ -3,8 +3,8 @@
 set :stage, :production
 set :branch, :develop
 set :rails_env, :production
-set :server_address, ENV.fetch('SERVER_ADDRESS', '')
-set :deploy_user, ENV.fetch('DEPLOY_USER', '')
+set :server_address, ENV.fetch("SERVER_ADDRESS", "")
+set :deploy_user, ENV.fetch("DEPLOY_USER", "")
 
 # server-based syntax
 # ======================

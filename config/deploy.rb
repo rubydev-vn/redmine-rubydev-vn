@@ -4,13 +4,13 @@
 lock "~> 3.19.2"
 
 set :application, "redmine-rubydev-vn"
-set :repo_url, ENV.fetch('REPO_URL', '')
-set :deploy_user, ENV.fetch('DEPLOY_USER', '')
+set :repo_url, "git@github.com:rubydev-vn/redmine-rubydev-vn.git"
+set :deploy_user, ENV.fetch("DEPLOY_USER", "")
 
-if File.exist?('.ruby-version')
-  set :ruby_version, File.read('.ruby-version').strip
+if File.exist?(".ruby-version")
+  set :ruby_version, File.read(".ruby-version").strip
 else
-  set :ruby_version, ENV.fetch('RUBY_VERSION', '3.3.6')
+  set :ruby_version, ENV.fetch("RUBY_VERSION", "3.3.6")
 end
 
 # Default branch is :master
@@ -38,7 +38,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 # Default value for default_env is {}
 set :default_env, { path: "/home/#{fetch(:deploy_user)}/.local/share/mise/installs/ruby/#{fetch(:ruby_version)}/bin:$PATH" }
 
-# Default value for local_user is ENV['USER']
+# Default value for local_user is ENV["USER"]
 # set :local_user, -> { `git config user.name`.chomp }
 
 # Default value for keep_releases is 5
