@@ -36,3 +36,6 @@ jobs:
 
       - name: Deploy to Production
         run: bundle exec cap production deploy
+
+      - name: Delete SSH key
+        run: rm -f $GITHUB_WORKSPACE/.ssh/id_rsa
