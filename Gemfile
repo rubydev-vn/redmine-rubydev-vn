@@ -116,6 +116,14 @@ group :test do
   gem 'rubocop-rails', '~> 2.27.0', require: false
 end
 
+group :deployment do
+  gem "capistrano", "~> 3.19", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem "capistrano-bundler", "~> 2.1"
+  gem "ed25519", "~> 1.3"
+  gem "bcrypt_pbkdf", "~> 1.1"
+end
+
 local_gemfile = File.join(File.dirname(__FILE__), "Gemfile.local")
 if File.exist?(local_gemfile)
   eval_gemfile local_gemfile
@@ -124,12 +132,4 @@ end
 # Load plugins' Gemfiles
 Dir.glob File.expand_path("../plugins/*/{Gemfile,PluginGemfile}", __FILE__) do |file|
   eval_gemfile file
-end
-
-group :deployment do
-  gem "capistrano", "~> 3.19", require: false
-  gem "capistrano-rails", "~> 1.6", require: false
-  gem "capistrano-bundler", "~> 2.1"
-  gem "ed25519", "~> 1.3"
-  gem "bcrypt_pbkdf", "~> 1.1"
 end
