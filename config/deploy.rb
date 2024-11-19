@@ -30,10 +30,10 @@ set :deploy_to, "/home/#{fetch(:deploy_user)}/#{fetch(:application)}"
 # set :pty, true
 
 # Default value for :linked_files is []
-# append :linked_files, "config/database.yml", 'config/master.key'
+append :linked_files, "config/database.yml", "config/master.key", "config/credentials.yml.enc", "config/puma.rb"
 
 # Default value for linked_dirs is []
-# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "vendor", "storage"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "vendor", "storage", "public/assets", "public/uploads"
 
 # Default value for default_env is {}
 set :default_env, { path: "/home/#{fetch(:deploy_user)}/.local/share/mise/installs/ruby/#{fetch(:ruby_version)}/bin:$PATH" }
@@ -46,3 +46,6 @@ set :keep_releases, 5
 
 # Uncomment the following to require manually verifying the host key before first deploy.
 # set :ssh_options, verify_host_key: :secure
+
+# Skip backup of assets manifest file
+Rake::Task["deploy:assets:backup_manifest"].clear_actions
