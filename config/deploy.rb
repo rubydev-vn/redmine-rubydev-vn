@@ -49,3 +49,5 @@ set :keep_releases, 5
 
 # Skip backup of assets manifest file
 Rake::Task["deploy:assets:backup_manifest"].clear_actions
+
+after "deploy:publishing", "puma:restart"
