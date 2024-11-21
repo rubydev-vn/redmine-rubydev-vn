@@ -30,7 +30,8 @@ set :deploy_to, "/home/#{fetch(:deploy_user)}/#{fetch(:application)}"
 # set :pty, true
 
 # Default value for :linked_files is []
-append :linked_files, "config/database.yml", "config/master.key", "config/credentials.yml.enc", "config/puma.rb", "config/additional_environment.rb"
+append :linked_files, "config/database.yml", "config/master.key", "config/credentials.yml.enc", "config/puma.rb",
+                      "config/additional_environment.rb", "config/configuration.yml"
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "vendor", "storage", "public/assets", "public/uploads"
