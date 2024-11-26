@@ -156,7 +156,8 @@ pre, code {font-family: Consolas, Menlo, "Liberation Mono", Courier, monospace;}
 @media screen and (min-width: 1600px) and (max-width: 1919px) {#sidebar{width: 320px;}}
 @media screen and (min-width: 1920px) and (max-width: 2559px) {#sidebar{width: 360px;}}
 @media screen and (min-width: 2560px) {#sidebar{width: 380px;}}
-#sidebar h3{ font-size: 0.875rem; color: #555; }
+#sidebar h3{ font-size: 0.875rem; margin-top: 14px; color: #555; }
+#sidebar h3:first-child{ margin-top: 0; }
 #sidebar hr{ width: 100%; margin: 0 auto; height: 1px; background: #ccc; border: 0; }
 #sidebar .contextual { margin-right: 1em; }
 #sidebar ul, ul.flat {margin: 0;  padding: 0;}
@@ -238,8 +239,6 @@ a.user.user-mention {
 #sidebar .query.default {font-weight: bold;}
 #admin-menu a {line-height:1.7em;}
 #admin-menu a.selected:not(:has(svg))  {padding-left: 20px !important; background-position: 2px 40%;}
-
-a.collapsible {padding-left: 12px; }
 
 a#toggle-completed-versions {color:#999;}
 
@@ -1624,7 +1623,7 @@ table.gantt-table td {
   height: 16px;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis;
+  text-overflow: clip;
   width: 100%;
 }
 .gantt_subjects div.issue-subject:hover { background-color:#ffffdd; }
@@ -1743,6 +1742,10 @@ td.gantt_selected_column .gantt_hdr,.gantt_selected_column_container {
   display: inline-flex;
   align-items: center;
   vertical-align: middle;
+
+  svg {
+    flex-shrink: 0;
+  }
 }
 
 a.icon:hover svg, a.icon-only:hover svg {

@@ -75,7 +75,7 @@ if File.exist?(database_file)
       when /postgresql/
         gem 'pg', '~> 1.5.3'
       when /sqlite3/
-        gem 'sqlite3', '~> 1.7.0'
+        gem 'sqlite3', '~> 2.3.0'
       when /sqlserver/
         gem 'tiny_tds', '~> 2.1.2'
         gem 'activerecord-sqlserver-adapter', '~> 7.2.0'
@@ -114,6 +114,15 @@ group :test do
   gem 'rubocop', '~> 1.68.0', require: false
   gem 'rubocop-performance', '~> 1.23.0', require: false
   gem 'rubocop-rails', '~> 2.27.0', require: false
+  gem 'bundle-audit', require: false
+end
+
+group :deployment do
+  gem "capistrano", "~> 3.19", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem "capistrano-bundler", "~> 2.1"
+  gem "ed25519", "~> 1.3"
+  gem "bcrypt_pbkdf", "~> 1.1"
 end
 
 group :deployment do

@@ -760,8 +760,10 @@ $(document).ready(function(){
     } else {
       $(".drdn").removeClass("expanded");
       drdn.addClass("expanded");
-      selected = $('.drdn-items a.selected'); // Store selected project
-      selected.focus(); // Calling focus to scroll to selected project
+      if ($(this).parent('#project-jump').length) {
+        selected = $('.drdn-items a.selected'); // Store selected project
+        selected.focus(); // Calling focus to scroll to selected project
+      }
       if (!isMobile()) {
         drdn.find(".autocomplete").focus();
       }
@@ -1291,10 +1293,10 @@ function inlineAutoComplete(element) {
   };
   var applyState = function(){
     if(main.hasClass('collapsedsidebar')){
-      updateSVGIcon(main[0], 'chevrons-left')
+      updateSVGIcon(document.getElementById('sidebar-switch-button'), 'chevrons-left')
       setState('hidden');
     } else {
-      updateSVGIcon(main[0], 'chevrons-right')
+      updateSVGIcon(document.getElementById('sidebar-switch-button'), 'chevrons-right')
       setState('visible');
     }
   };
