@@ -27,10 +27,10 @@ welcome_text:
 
     Note: You can modify this message in the "Welcome text" setting (Administration > Settings > General).
 login_required:
-  default: 0
+  default: 1
   security_notifications: 1
 self_registration:
-  default: '2'
+  default: '0'
   security_notifications: 1
 show_custom_fields_on_registration:
   default: 1
@@ -110,7 +110,7 @@ force_default_language_for_anonymous:
 force_default_language_for_loggedin:
   default: 0
 host_name:
-  default: localhost:3000
+  default: 'redmine.ruby-dev.vn'
 protocol:
   default: http
   security_notifications: 1
