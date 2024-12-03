@@ -1,0 +1,38 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [release]
+
+jobs:
+  deploy-pro:
+    runs-on: ubuntu-latest
+    env:
+      SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
+      DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Copy SSH key
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > $GITHUB_WORKSPACE/.ssh/id_rsa
+          chmod 600 $GITHUB_WORKSPACE/.ssh/id_rsa
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+
+      - name: Install dependencies
+        run: |
+          bundle config set frozen false
+          bundle config set with 'deployment'
+          bundle install
+
+      - name: Deploy to Production
+        run: bundle exec cap production deploy
+
+      - name: Delete SSH key
+        run: rm -f $GITHUB_WORKSPACE/.ssh/id_rsa

@@ -92,6 +92,7 @@ end
 
 group :development, :test do
   gem 'debug'
+  gem 'pry'
 end
 
 group :development do
@@ -114,6 +115,14 @@ group :test do
   gem 'rubocop-performance', '~> 1.23.0', require: false
   gem 'rubocop-rails', '~> 2.27.0', require: false
   gem 'bundle-audit', require: false
+end
+
+group :deployment do
+  gem "capistrano", "~> 3.19", require: false
+  gem "capistrano-rails", "~> 1.6", require: false
+  gem "capistrano-bundler", "~> 2.1"
+  gem "ed25519", "~> 1.3"
+  gem "bcrypt_pbkdf", "~> 1.1"
 end
 
 local_gemfile = File.join(File.dirname(__FILE__), "Gemfile.local")
