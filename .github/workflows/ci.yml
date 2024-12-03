@@ -1,15 +1,12 @@
 name: CI/CD
 
 on:
-  pull_request:
-    branches: [develop]
   push:
-    branches: [develop]
+    branches: [release]
 
 jobs:
-  dev-deploy:
+  deploy-pro:
     runs-on: ubuntu-latest
-    if: github.event_name == 'push'
     env:
       SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
       DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
