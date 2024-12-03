@@ -35,7 +35,7 @@ append :linked_files, "config/database.yml", "config/master.key", "config/creden
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/pdf", "vendor", "storage",
-                    "public/system", "public/assets", "public/uploads", "plugin_assets"
+                    "public/system", "public/assets", "public/uploads", "public/plugin_assets"
 
 # Default value for default_env is {}
 set :default_env, { path: "/home/#{fetch(:deploy_user)}/.local/share/mise/installs/ruby/#{fetch(:ruby_version)}/bin:$PATH" }
