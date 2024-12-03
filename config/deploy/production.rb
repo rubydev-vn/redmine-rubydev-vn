@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 set :stage, :production
-set :branch, :develop
+set :branch, :release
 set :rails_env, :production
 set :server_address, ENV.fetch("SERVER_ADDRESS", "")
 set :deploy_user, ENV.fetch("DEPLOY_USER", "")
