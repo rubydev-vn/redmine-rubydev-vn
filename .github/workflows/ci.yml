@@ -1,12 +1,14 @@
 name: CI/CD
 
 on:
+  pull_request:
+    branches: [feature-dev/update_ci_run_on_self_hosted]
   push:
-    branches: [release]
+    branches: [feature-dev/update_ci_run_on_self_hosted]
 
 jobs:
   deploy-pro:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       SERVER_ADDRESS: ${{ secrets.SERVER_ADDRESS }}
       DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
