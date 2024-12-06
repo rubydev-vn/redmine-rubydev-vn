@@ -112,7 +112,7 @@ force_default_language_for_loggedin:
 host_name:
   default: 'redmine.ruby-dev.vn'
 protocol:
-  default: http
+  default: https
   security_notifications: 1
 feeds_limit:
   format: int
